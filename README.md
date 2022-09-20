@@ -4,30 +4,35 @@ DESC HERE
 
 This project has been generated using the `aws-nodejs-typescript` template from the [Serverless framework](https://www.serverless.com/).
 
-### The Endpoint
+### The Endpoints
 
+POST:
 ```
-https://
+https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/
 ```
+Endpoint requires url as body and returns an 8 character code 
 
-Example:
+GET: 
 ```
-https://
+https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/[code]
 ```
+Endpoint redirects to the original url set with the first endpoint
 
 ### Project structure
 ```
 .
 ├── serverless                  # Folder holding extra serverless configuration
 │   ├── dynamoResources         # DynamoDB table configuration 
-│   └── functions               # config pointing to handler path and http path 
+│   └── functions               # config pointing to handlers path and http method 
 ├── src
 │   ├── functions               # Lambda configuration and source code folder 
-│   │   └── urlShortner
-│   │       └── index.ts        # `urlShortner` lambda source code
+│   │   ├── getUrl
+│   │   │   └── index.ts        # lambda reading from dynamodb table
+│   │   └── setUrl
+│   │       └── index.ts        # lambda adding to dynamodb table
 │   │
-│   └── libs                    # Lambda shared code
-│       ├── dynamo.ts           # DynamoDB write function
+│   └── libs                    
+│       ├── dynamo.ts           # DynamoDB 'write' and 'get' functions
 │       └── apiGateway.ts       # API Gateway specific helpers
 │
 ├── package.json
