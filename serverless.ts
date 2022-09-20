@@ -1,15 +1,15 @@
-import type { AWS } from '@serverless/typescript';
+import type { AWS } from "@serverless/typescript";
 
-import functions from './serverless/functions';
-import dynamoResources from './serverless/dynamoResources'
+import functions from "./serverless/functions";
+import dynamoResources from "./serverless/dynamoResources";
 
 const serverlessConfiguration: AWS = {
-  service: 'urlshortener',
-  frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  service: "urlshortener",
+  frameworkVersion: "3",
+  plugins: ["serverless-esbuild"],
   provider: {
-    name: 'aws',
-    runtime: 'nodejs14.x',
+    name: "aws",
+    runtime: "nodejs14.x",
     profile: "serverlessUser",
     region: "eu-central-1",
     apiGateway: {
@@ -17,29 +17,39 @@ const serverlessConfiguration: AWS = {
       shouldStartNameWithService: true,
     },
     environment: {
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      urlTable: '${self:custom.urlTableName}'
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      urlTable: "${self:custom.urlTableName}",
+      baseUrl: {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            { Ref: "HttpApi" },
+            ".execute-api.${self:provider.region}.amazoneaws.com",
+          ],
+        ],
+      },
     },
   },
   // import the function via paths
   functions,
   resources: {
     Resources: {
-      ...dynamoResources
+      ...dynamoResources,
     },
   },
   package: { individually: true },
   custom: {
-    urlTableName: '${sls:stage}-url-table',
+    urlTableName: "${sls:stage}-url-table",
     esbuild: {
       bundle: true,
       minify: false,
       sourcemap: true,
-      exclude: ['aws-sdk'],
-      target: 'node14',
-      define: { 'require.resolve': undefined },
-      platform: 'node',
+      exclude: ["aws-sdk"],
+      target: "node14",
+      define: { "require.resolve": undefined },
+      platform: "node",
       concurrency: 10,
     },
   },
