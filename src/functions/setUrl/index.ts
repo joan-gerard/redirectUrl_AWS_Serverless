@@ -2,12 +2,13 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 import { v4 as uuid } from "uuid";
 
 import { formatJSONResponse } from "@libs/apiGateway";
+import { dynamo } from "@libs/dynamo";
 
 export const handler = async (event: APIGatewayProxyEvent) => {
   try {
     const body = JSON.parse(event.body);
-    const tableName = process.env.urlTable
-    const baseUrl = process.env.baseUrl
+    const tableName = process.env.urlTable;
+    const baseUrl = process.env.baseUrl;
 
     const originalUrl = body.url;
     const code = uuid().slice(0, 8);
