@@ -27,6 +27,7 @@ https://
 │   │       └── index.ts        # `urlShortner` lambda source code
 │   │
 │   └── libs                    # Lambda shared code
+│       ├── dynamo.ts           # DynamoDB write function
 │       └── apiGateway.ts       # API Gateway specific helpers
 │
 ├── package.json
