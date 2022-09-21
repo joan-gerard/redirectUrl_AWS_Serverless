@@ -1,22 +1,31 @@
 # Redirect URL
 
-DESC HERE
+For this project I practiced interacting with dynamodb from an AWS lambda. 
+A dynamo resource was added to the sls infrastructure so that it gets deployed with the lambdas.
+A dynamo library was created to make writing and getting data from dynamo a bit easier.
+I have passed the name of the table into the lambda as an env variable.
 
 This project has been generated using the `aws-nodejs-typescript` template from the [Serverless framework](https://www.serverless.com/).
 
 ### The Endpoints
 
 POST:
+Endpoint requires url as body and returns an 8 character code 
 ```
 https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/
 ```
-Endpoint requires url as body and returns an 8 character code 
 
 GET: 
+Endpoint redirects to the original url set with the first endpoint
 ```
 https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/[code]
 ```
-Endpoint redirects to the original url set with the first endpoint
+
+This example shoul lead you to my online portfolio
+```
+https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/433ac958
+```
+
 
 ### Project structure
 ```
