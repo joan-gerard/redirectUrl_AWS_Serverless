@@ -22,9 +22,7 @@ https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/[code]
 ```
 
 This example should redirect you to my online portfolio
-```
 [https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/433ac958](https://5ad8ww7w5l.execute-api.eu-central-1.amazonaws.com/433ac958)
-```
 
 
 ### Project structure
