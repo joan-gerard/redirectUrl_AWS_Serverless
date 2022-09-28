@@ -1,4 +1,4 @@
-# Redirect URL
+# Redirect URL - AWS Serverless
 
 For this project I practiced interacting with dynamodb from an AWS lambda. 
 A dynamo resource was added to the sls infrastructure so that it gets deployed with the lambdas.
